@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#173f33"><meta name="description" content="观澜：靳世辰的跨平台资产看板与AI辅助开发作品。通过虚拟数据体验资产汇总、持仓合并、多币种换算与盈亏核验。">
+<title>观澜｜跨平台资产看板 · 作品演示</title>
+<link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./demo.css">
+</head>
+<body>
+<aside class="sidebar">
+ <a class="brand" href="#overview" aria-label="观澜首页"><span class="brand-icon">≈</span><span>观澜<small>PORTFOLIO</small></span></a>
+ <div class="space-label">跨平台资产看板<span>INTERACTIVE DEMO</span></div>
+ <nav aria-label="主导航">
+  <button data-view="overview" class="nav-item active"><span>◫</span>资产总览</button>
+  <button data-view="holdings" class="nav-item"><span>≡</span>持仓明细</button>
+  <button data-view="accounts" class="nav-item"><span>▦</span>账户覆盖 <b>6</b></button>
+  <button data-view="method" class="nav-item"><span>∑</span>盈亏口径</button>
+  <button data-view="about" class="nav-item"><span>◇</span>项目说明</button>
+ </nav>
+ <div class="side-accounts"><div class="eyebrow">一个视角 · 六个平台</div><div><i style="--c:#b5a176"></i>中金财富<span>A 股</span></div><div><i style="--c:#e69c60"></i>富途牛牛<span>证券</span></div><div><i style="--c:#8499c7"></i>长桥证券<span>证券</span></div><div><i style="--c:#d9b54b"></i>币安<span>加密</span></div><div><i style="--c:#69a895"></i>Hyperliquid<span>链上</span></div><div><i style="--c:#79a45a"></i>Robinhood<span>英国</span></div></div>
+ <div class="side-bottom"><strong>资产有数，心中有底。</strong><p>以清晰，面对波动。</p><div class="profile"><span>J</span><div>靳世辰 · 个人项目<small>需求设计 / 产品验证 / AI辅助开发</small></div></div></div>
+</aside>
+<div class="workspace">
+ <header><div class="breadcrumb">观澜 · 作品演示<span>/</span><strong id="viewCrumb">资产总览</strong></div><div class="header-right"><span>虚拟样本 · 2026.10.15</span><button id="privacyBtn" class="icon-button" aria-label="隐藏金额" title="隐藏金额">◉</button></div></header>
+ <main>
+  <div class="page-title"><div><div class="eyebrow">YOUR WEALTH, IN PERSPECTIVE</div><h1 id="pageTitle">资产总览<span>看见每一份变化。</span></h1></div><div class="title-actions"><select id="baseCurrency" aria-label="展示币种"><option value="USD">USD · 美元</option><option value="CNY">CNY · 人民币</option><option value="HKD">HKD · 港币</option><option value="GBP">GBP · 英镑</option></select><button class="button" data-go="about">了解项目 ↗</button></div></div>
+  <div class="mode-banner"><span>◌</span><span><b>公开演示版</b> &nbsp; 所有账户、金额、价格和走势均为虚拟样本。可直接体验，无需登录或接入账户。</span></div>
+  <section id="overviewView">
+   <div class="metrics">
+    <article class="metric total"><div class="metric-label">总资产估值<span>6 个示例账户</span></div><div class="hero-number" id="totalValue">—</div><div class="metric-foot"><span id="totalCaption">统一展示币种</span><span>VIRTUAL DATA</span></div></article>
+    <article class="metric"><div class="metric-label">当日参考盈亏<button class="text-button" data-go="method">查看口径 ↗</button></div><div class="metric-number" id="dayPnl">—</div><div class="metric-foot" id="pnlCaption">扣除已记录净转入</div></article>
+    <article class="metric"><div class="metric-label">样本账户覆盖<span class="status-dot"></span></div><div class="metric-number">6 <small>/ 6</small></div><div class="metric-foot">四种计价货币 · 六个平台</div></article>
+   </div>
+   <div class="visual-grid">
+    <article class="panel chart-panel"><div class="panel-head"><div><h2>资产走势</h2><p>虚拟净值序列 · 用于展示交互</p></div><div class="segments" id="ranges" role="group" aria-label="走势时间范围"><button data-range="1W">1W</button><button data-range="1M" class="active">1M</button><button data-range="ALL">全部</button></div></div><div id="chartWrap" class="chart-wrap"></div><div class="chart-footer"><span><i></i> 示例总资产净值</span><span id="chartNote">—</span></div></article>
+    <article class="panel allocation-panel"><div class="panel-head"><h2>资产分布</h2><span class="subtle">按账户净值</span></div><div id="allocation"></div></article>
+   </div>
+   <article class="panel account-panel"><div class="panel-head"><div><h2>账户概览<span class="count-badge">6</span></h2><p>保留原币金额，统一比较。</p></div><button class="text-button" data-go="accounts">查看账户覆盖 ↗</button></div><div class="table-scroll"><table><thead><tr><th>账户 / 平台</th><th>资产净值 <span id="tableCurrency">USD</span></th><th>当日参考盈亏</th><th>占比</th><th>数据状态</th></tr></thead><tbody id="accountRows"></tbody></table></div></article>
+   <article class="panel holdings-preview"><div class="panel-head"><div><h2>穿透到每一项持仓<span class="count-badge" id="holdingsCount"></span></h2><p>同一资产跨账户合并；展开查看来源。</p></div><button class="text-button" data-go="holdings">筛选与排序 ↗</button></div><div id="holdingsPreview"></div></article>
+   <div class="bottom-note"><span>◈ 账户净值已包含持仓，持仓市值不会再次累加。</span><span id="fxNote"></span></div>
+  </section>
+  <section id="holdingsView" hidden>
+   <div class="section-intro"><div><h2>每一份资产，都看得见。</h2><p>试试搜索 NVDA，查看跨账户合并结果；点击市值或盈亏表头排序。</p></div></div>
+   <div class="holding-filters" id="holdingFilters"></div><div class="holding-toolbar"><div class="holding-search"><label for="holdingSearch">搜索资产</label><input id="holdingSearch" type="search" placeholder="输入名称或代码，例如 NVDA、茅台" autocomplete="off"></div><div class="holding-sort"><label for="holdingViewMode">展示方式</label><select id="holdingViewMode"><option value="merged">按资产合并</option><option value="accounts">按账户逐笔</option></select></div></div>
+   <p id="holdingSortNote" class="holding-sort-note"></p><div id="holdingsStatus" class="holding-sources"></div><article class="panel" id="holdingsTable"></article>
+   <div class="panel guidance"><h2>缺失值保留为未知</h2><p>样本中的 ALPHA 基金特意保留价格缺失，用于演示「—」及未知项置后。合约名义价值单独展示，不加入账户净值。所有证券价格均为虚拟值，不代表当前市场行情。</p></div>
+  </section>
+  <section id="accountsView" hidden>
+   <div class="section-intro"><div><h2>让每个数字，都有来路。</h2><p>这里说明原项目的接入设计。当前公开展示使用独立虚拟样本。</p></div></div>
+   <div id="accountCards" class="connect-grid"></div>
+   <div class="panel guidance"><h2>接入状态与数据时点分开表达</h2><p>原项目采用只读API与手工录入相结合。六个平台的展示覆盖不等于六个平台均已自动接通；各平台权限、资产范围和数据时效需要分别核验。</p></div>
+  </section>
+  <section id="methodView" hidden>
+   <div class="section-intro"><div><h2>把本金变化，与盈亏分开。</h2><p>修改下方虚拟数字，观察净转入如何影响参考盈亏。</p></div></div>
+   <article class="panel calculator"><div class="formula">参考盈亏 = 期末净值 − 期初净值 − 已记录净转入</div><div class="calc-fields"><label class="field">期初净值（USD）<input id="openingInput" type="number" value="100000" min="0" step="100"></label><label class="field">期末净值（USD）<input id="closingInput" type="number" value="112000" min="0" step="100"></label><label class="field">净转入（USD，可为负）<input id="flowInput" type="number" value="10000" step="100"></label></div><label class="check-label"><input id="missingInput" type="checkbox">模拟缺少完整资金流水</label><div class="calc-result"><div><span>净值变动</span><strong id="navChange"></strong></div><div><span>扣除净转入后的参考盈亏</span><strong id="adjustedPnl"></strong></div></div><p id="calcExplanation" class="calc-note" aria-live="polite"></p></article>
+   <div class="method-grid"><article class="panel guidance"><h2>01 / 同范围比较</h2><p>期初与期末采用相同账户范围。新增账户会改变资产总额，不直接视为投资收益。</p></article><article class="panel guidance"><h2>02 / 同一换算基准</h2><p>原币金额保留，汇总使用统一展示币种。此演示固定汇率，不包含汇率变动收益。</p></article><article class="panel guidance"><h2>03 / 未知不填零</h2><p>缺少期初净值、有效汇率或完整资金流水时，显示未知或已知小计，并说明覆盖范围。</p></article><article class="panel guidance"><h2>04 / 防止重复计算</h2><p>账户净值与持仓明细分别展示。账户已包含的持仓、合约名义价值不再次加入总额。</p></article></div>
+  </section>
+  <section id="aboutView" hidden>
+   <article class="panel about-intro"><div class="eyebrow">PROJECT / GUANLAN</div><h2>将分散的资产，放在一起看。</h2><p>观澜是一个持续迭代的个人资产看板项目。我从多平台账户难以统一查看的问题出发，梳理资产、持仓与资金流的业务规则，并使用Codex辅助开发，通过实际结果核对推动产品迭代。</p><div class="project-meta"><span>靳世辰 · 个人项目</span><span>2026.10 起持续迭代</span><span>需求设计与产品验证</span></div></article>
+   <div class="about-grid"><article class="panel guidance"><h2>我负责的工作</h2><p>提出功能需求、梳理指标口径、设计展示与交互要求、检查界面和计算结果、反馈问题并推动迭代。</p></article><article class="panel guidance"><h2>AI参与的环节</h2><p>代码实现由Codex辅助完成。我以业务规则和结果核验指导开发，重点关注计算是否正确、来源是否清楚，以及缺失数据如何表达。</p></article></div>
+   <article class="panel walkthrough"><h2>建议体验顺序</h2><ol><li><button data-go="overview">资产总览 ↗</button><span>切换USD、CNY、HKD、GBP，观察统一换算。</span></li><li><button data-go="holdings">持仓明细 ↗</button><span>搜索NVDA，展开跨账户明细，并按市值排序。</span></li><li><button data-go="method">盈亏口径 ↗</button><span>调整净转入，模拟数据缺失，核对计算逻辑。</span></li></ol></article>
+   <div class="panel guidance"><h2>关于这个演示</h2><p>当前页面用于作品展示，使用独立编制的虚拟账户、持仓、汇率和历史序列，保留原项目的主要展示与分析逻辑。演示不包含私人账户信息，不读取真实资产，不接受API密钥，也不提供交易功能。实际接入能力与范围以上述账户说明为准。</p></div>
+  </section>
+  <footer><span><strong>观澜</strong> &nbsp; PORTFOLIO DEMO</span><span>靳世辰 · 需求设计与产品验证 · Codex辅助开发</span></footer>
+ </main>
+</div>
+<script type="module" src="./app.js"></script>
+</body></html>
